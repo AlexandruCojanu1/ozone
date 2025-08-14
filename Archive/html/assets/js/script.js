@@ -42,7 +42,7 @@
                 var windowpos = $(window).scrollTop();
                 var siteHeader = $('.main-header');
                 var scrollLink = $('.scroll-to-top');
-                if (windowpos >= 250) {
+                if (windowpos >= 100) {
                     siteHeader.addClass('fixed-header');
                     scrollLink.addClass('show');
                 } else {
@@ -52,6 +52,15 @@
             }
         }
         headerStyle();
+
+        // Highlight active navigation link
+        var path = window.location.pathname.split("/").pop();
+        if (path === "") { path = "index.html"; }
+        $('.main-menu .navigation a').each(function() {
+            if ($(this).attr('href') === path) {
+                $(this).addClass('active');
+            }
+        });
 
         // ## Scroll to Top Functionality
         if ($('#scrollToTop').length) {
